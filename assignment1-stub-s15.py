@@ -34,7 +34,10 @@ def process_corpus(corpus_name):
     corpus_contents = unzip_corpus(input_file)
 
     # Your code goes here
+    print('getting corpus length')
+    print( len(corpus_contents) ) # list of num titles
     pass
+
 
 ###############################################################################
 ## Program Entry Point ########################################################
@@ -49,8 +52,14 @@ if __name__ == '__main__':
 
     corpus_name = args.corpus
 
-    if corpus_name == "fables" or "blogs":
+    if corpus_name == "fables":
+        print( "Corpus name: " + corpus_name )
         process_corpus(corpus_name)
+
+    elif corpus_name == "blogs":
+        print( "Corpus name: " + corpus_name )
+        process_corpus(corpus_name)
+
     else:
         print("Unknown corpus name: {0}".format(corpus_name))
 
