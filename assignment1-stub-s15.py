@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import nltk, zipfile, argparse
+from nltk.tokenize import word_tokenize
+from nltk.corpus import PlaintextCorpusReader
 
 ###############################################################################
 ## Utility Functions ##########################################################
@@ -26,6 +28,8 @@ def unzip_corpus(input_file):
                 for fn in zip_archive.namelist() if fn.endswith(".txt")]
     return contents
 
+
+
 ###############################################################################
 ## Stub Functions #############################################################
 ###############################################################################
@@ -35,14 +39,42 @@ def process_corpus(corpus_name):
 
     # Your code goes here
     print('getting corpus length')
+    # print( corpus_contents ) # prints entire list out
     print( len(corpus_contents) ) # list of num titles
+    print('first index 0 of corpus_contents '+ corpus_contents[0] )
+    print()
+    print()
+
+    print('test')
+    #    print( len( corpus_contents[0] ) )
+    # for i in corpus_contents:
+    #    print(i)
+    #    print()
+
+    i = 0
+    while i < len( corpus_contents ):
+        print( corpus_contents[i] )
+        print(i)
+        i += 1
+
+    #corpus_contents
+
+    #for i in corpus_contents:
+    #    if i not in corp_tok:
+    #        corp_tok.append(i)
+
+
+    # corp_tok = [ word_tokenize( corpus_contents[0] ) ] # tokenizes
+    # print( corp_tok )
+
+    # corp_tok =  word_tokenize[ corpus_contents.raw() ]
+
     pass
 
 
 ###############################################################################
 ## Program Entry Point ########################################################
 ###############################################################################
-print('hello world')
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Assignment 1')
     parser.add_argument('--corpus', required=True, dest="corpus", metavar='NAME',
