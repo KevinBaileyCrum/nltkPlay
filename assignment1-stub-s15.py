@@ -111,8 +111,14 @@ def process_corpus(corpus_name):
     ffreq.close() # close file
     maxpos=sorted(freq.items(), key=operator.itemgetter(1))[-1]
 
-    print("the most frequent part of speech tag is: %s"%maxpos[0] )
-    print("with frequency: %s"%maxpos[1])
+    print("the most frequent part of speech tag is: %s"%maxpos[0],
+            " with frequency: %s"%maxpos[1])
+
+
+
+    #print("the most frequent part of speech tag is: %s"%maxpos[0]+" with
+            #frequency: %s"%maxpos[1])
+    #print("with frequency: %s"%maxpos[1])
 
     print("the most frequent part of speech of the following")
     atoms=['NN','VBD','JJ','RB']
