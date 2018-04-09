@@ -45,24 +45,29 @@ def process_corpus(corpus_name):
     print()
     print()
 
+
     print('test')
     i = 0
+    corp_toks = []
     word_sum = 0
     while i < len( corpus_contents ):
-        #print( corpus_contents[i] )
         print(i)
-        corp_tok = word_tokenize( corpus_contents[i] )
-        word_sum += len( corp_tok )
+        corp_toks += word_tokenize( corpus_contents[i] )
         i += 1
+    word_sum=len( corp_toks )
 
-    print ('word sum %s' % word_sum)
+    # print total words
+    #   This was found by tokenizing the entire corpus and printing the sum
+    print ('Total words in the corpus: %s' % word_sum)
 
+    # print vocabulary size
+    #   the size is determined by the unique words in the set
+    #   I only counted the words and not punctuation for
+    #   the set hence the use of isalpha()
+    vocab_size = len( set (word.lower() for word in corp_toks
+                      if word.isalpha() ) )
+    print( vocab_size )
 
-    # corp_tok = [ for text in corpus_contents ]word_tokenize( corpus_contents[0] ) ] # tokenizes
-    # print( corp_tok )
-    # print( 'corp_tok len %s' % (corp_tok[0].__len__()))
-
-    pass
 
 
 ###############################################################################
