@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bok]in/env python
 
 import nltk, zipfile, argparse
 from nltk.tokenize import word_tokenize
@@ -46,28 +46,21 @@ def process_corpus(corpus_name):
     print()
 
     print('test')
-    #    print( len( corpus_contents[0] ) )
-    # for i in corpus_contents:
-    #    print(i)
-    #    print()
-
     i = 0
+    word_sum = 0
     while i < len( corpus_contents ):
-        print( corpus_contents[i] )
+        #print( corpus_contents[i] )
         print(i)
+        corp_tok = word_tokenize( corpus_contents[i] )
+        word_sum += len( corp_tok )
         i += 1
 
-    #corpus_contents
-
-    #for i in corpus_contents:
-    #    if i not in corp_tok:
-    #        corp_tok.append(i)
+    print ('word sum %s' % word_sum)
 
 
-    # corp_tok = [ word_tokenize( corpus_contents[0] ) ] # tokenizes
+    # corp_tok = [ for text in corpus_contents ]word_tokenize( corpus_contents[0] ) ] # tokenizes
     # print( corp_tok )
-
-    # corp_tok =  word_tokenize[ corpus_contents.raw() ]
+    # print( 'corp_tok len %s' % (corp_tok[0].__len__()))
 
     pass
 
