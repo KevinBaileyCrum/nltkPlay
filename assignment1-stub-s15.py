@@ -1,6 +1,6 @@
 #!/usr/bok]in/env python
 
-import nltk, zipfile, argparse, sys, json
+import nltk, zipfile, argparse, sys, json, codecs
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.corpus import PlaintextCorpusReader
 
@@ -64,19 +64,21 @@ def process_corpus(corpus_name):
     # open file for part of speech tagging
     #   open file
     #       tokenize sentences
-    #       format output
+    #       format output note: I added way more newlines then specified,
+    #                           I found it to be way more readible
     #   close file
-    fpos = open( corpus_name+"-pos.txt", "w+" )
-
-    sentences = nltk.sent_tokenize( corpus_contents[0] )
-    print( nltk.pos_tag( nltk.word_tokenize(sentences[0]) ) )
+    fpos = codecs.open( corpus_name+"-pos.txt", "w+" , 'utf-8')
+    i=0
     out=""
-    for sentence in sentences:
-        ptag = nltk.pos_tag( nltk.word_tokenize( sentence ) )
-        for token in ptag:
-            out+= ("%s/%s "%( token[0] , token[1] ) )
-        out+='\n'
-
+    while i < len( corpus_contents ):
+        sentences = nltk.sent_tokenize( corpus_contents[i] )
+        for sentence in sentences:
+            ptag = nltk.pos_tag( nltk.word_tokenize( sentence ) )
+            for token in ptag:
+                out+= ("%s/%s "%( token[0] , token[1] ) )
+            out+='\n\n'
+        out+='\n\n\n\n'
+        i+= 1
     fpos.write( out )
     fpos.close()                                     # close file
 
