@@ -38,20 +38,10 @@ def process_corpus(corpus_name):
     corpus_contents = unzip_corpus(input_file)
 
     # Your code goes here
-    print('getting corpus length')
-    # print( corpus_contents ) # prints entire list out
-    print( len(corpus_contents) ) # list of num titles
-    print('first index 0 of corpus_contents '+ corpus_contents[0] )
-    print()
-    print()
-
-
-    print('test')
     i = 0
     corp_toks = []
     word_sum = 0
     while i < len( corpus_contents ):
-        print(i)
         corp_toks += word_tokenize( corpus_contents[i] )
         i += 1
     word_sum=len( corp_toks )
@@ -87,14 +77,28 @@ def process_corpus(corpus_name):
     #   the size is determined by the unique words in the set
     #   I only counted the words and not punctuation for
     #   the set hence the use of isalpha()
-    vocab_size = len( set (word.lower() for word in corp_toks
-                      if word.isalpha() ) )
-    print( vocab_size )
+    vocab =  set (word.lower() for word in corp_toks
+                      if word.isalpha() )
+    vocab_size = len( vocab )
+    print( "The vocabulary size of the corpus is %s"%vocab_size )
+
+
+    # most frequent part of speech tag using FreqDist
+    #   this will use vocab since it is already formatted
+    uniq_freq = ( word.lower() for word in corp_toks if word.isalpha() )
+    fdist = nltk.FreqDist( uniq_freq )
+    print( fdist )
+    out =""
+    for word, frequency in fdist.most_common( corp_toks.__len__() ):
+        out+= ( u'{};{}'.format( word, frequency ) )
+        out+= '\n'
+
+    print("the most frequent part of speech tag is: ")
 
     # open file and do stuff
-    f= open( corpus_name+"-word-freq.txt", "w+" ) # opens file
-
-    f.close()                                     # close file
+    ffreq= open( corpus_name+"-word-freq.txt", "w+" ) # opens file
+    ffreq.write( out )
+    ffreq.close()                                     # close file
 
 
 
