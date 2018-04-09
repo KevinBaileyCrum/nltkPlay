@@ -29,7 +29,7 @@ def unzip_corpus(input_file):
     return contents
 
 def maxFreq(input, source):
-    return nltk.FreqDist( source[input]).most_common(1)
+    return nltk.FreqDist( vfreq[input]).most_common(1)
 
 ###############################################################################
 ## Stub Functions #############################################################
@@ -115,9 +115,9 @@ def process_corpus(corpus_name):
     print("with frequency: %s"%maxpos[1])
 
     print("the most frequent part of speech of the following")
-    atoms=['NN','VBD','JJ','RB']
+    atoms=['NN','VDB','JJ','RB']
     for atom in atoms:
-        Nfreq=maxFreq(atom,vfreq)[0]
+        Nfreq=maxFreq(atom,vfreq)
         print("The most frequent %s is %s with %s occurences."%(atom,Nfreq[0], Nfreq[1]))
 
 ###############################################################################
