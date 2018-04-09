@@ -1,7 +1,7 @@
 #!/usr/bok]in/env python
 
-import nltk, zipfile, argparse
-from nltk.tokenize import word_tokenize
+import nltk, zipfile, argparse, sys, json
+from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.corpus import PlaintextCorpusReader
 
 ###############################################################################
@@ -60,6 +60,27 @@ def process_corpus(corpus_name):
     #   This was found by tokenizing the entire corpus and printing the sum
     print ('Total words in the corpus: %s' % word_sum)
 
+
+    # open file for part of speech tagging
+    #   open file
+    #       tokenize sentences
+    #       format output
+    #   close file
+    fpos = open( corpus_name+"-pos.txt", "w+" )
+
+    sentences = nltk.sent_tokenize( corpus_contents[0] )
+    print( nltk.pos_tag( nltk.word_tokenize(sentences[0]) ) )
+    out=""
+    for sentence in sentences:
+        ptag = nltk.pos_tag( nltk.word_tokenize( sentence ) )
+        for token in ptag:
+            out+= ("%s/%s "%( token[0] , token[1] ) )
+        out+='\n'
+
+    fpos.write( out )
+    fpos.close()                                     # close file
+
+
     # print vocabulary size
     #   the size is determined by the unique words in the set
     #   I only counted the words and not punctuation for
@@ -67,6 +88,11 @@ def process_corpus(corpus_name):
     vocab_size = len( set (word.lower() for word in corp_toks
                       if word.isalpha() ) )
     print( vocab_size )
+
+    # open file and do stuff
+    f= open( corpus_name+"-word-freq.txt", "w+" ) # opens file
+
+    f.close()                                     # close file
 
 
 
