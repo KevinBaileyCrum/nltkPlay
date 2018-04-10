@@ -103,7 +103,40 @@ def process_corpus(corpus_name):
     for word, frequency in fdist.most_common( corp_toks.__len__() ):
         out+= ( u'{};{}'.format( word, frequency ) )
         out+= '\n'
+    # open file and do stuff
+    ffreq= open( corpus_name+"-word-freq.txt", "w+" ) # opens file
+    ffreq.write( out )
+    ffreq.close() # close file
+    '''
+    #########
+    #ptat returns [word, pos]
+    #i#ptag = []
+    #i =0
+    #while i < len( corpus_contents ):
+    #    sentences = nltk.sent_tokenize( corpus_contents[i] )
+    #    for word in sentences:
+    #        ptag = nltk.pos_tag( nltk.word_tokenize( word ) ) # change to plus to fix
 
+        i += 1
+
+    print( ptag )
+    # condfreqdist
+    CondFreqDist = nltk.ConditionalFreqDist(
+            (part_of_speech, word)
+            for part_of_speech in ptag[0]
+            for word in ptag[1] )
+    CondFreqDist.tabulate( conditions = part_of_speech, samples = word )
+
+        #ptag.append( nltk.pos_tag( nltk.word_tokenize( corpus_contents[i] ) ) )
+        #ptag += nltk.pos_tag( nltk.word_tokenize( corpus_contents[i] ) )
+        #i += 1
+
+        #p#rint( ptag )
+    #fpos_word_freq = codecs.open( corpus_name+"-pos-word-freq.txt", "w+" , 'utf-8')
+    #for word, pos in ptag:
+    #    fpos_word_freq.write( "\n".join( ptag[_],[_] ) )
+    #fpos_word_freq.close()
+    '''
 
     # open file and do stuff
     ffreq= open( corpus_name+"-word-freq.txt", "w+" ) # opens file
@@ -125,6 +158,9 @@ def process_corpus(corpus_name):
     for atom in atoms:
         Nfreq=maxFreq(atom,vfreq)[0]
         print("The most frequent %s is %s with %s occurences."%(atom,Nfreq[0], Nfreq[1]))
+
+
+    print( corpus_contents[0].collocations() )
 
 ###############################################################################
 ## Program Entry Point ########################################################
